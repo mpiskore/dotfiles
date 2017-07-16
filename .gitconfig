@@ -1,0 +1,8 @@
+[alias]
+    ci = commit
+    st = status
+    co = checkout
+    br = branch
+    solve = mergetools -t kiff3
+    patch = !"git ci -am 'f' & git rebase HEAD~2"
+    reb = !"git co master & git pull & git co - & git rebase master"
