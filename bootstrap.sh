@@ -10,10 +10,13 @@ function doIt() {
 		--exclude ".osx" \
 		--exclude "bootstrap.sh" \
 		--exclude "basics.sh" \
+		--exclude "i3gaps_setup.sh" \
+		--exclude ".i3_config" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
 	source ~/.bash_profile;
+        rsync -avh --no-perms .i3_config ~/.config/i3/config
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
