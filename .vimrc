@@ -21,6 +21,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'powerline/powerline'
 Plugin 'scrooloose/nerdcommenter'
@@ -30,10 +31,25 @@ Plugin 'mileszs/ack.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'suan/vim-instant-markdown'
+Plugin 'vimwiki/vimwiki'
+Plugin 'nightsense/nemo'
+Plugin 'auwsmit/vim-active-numbers'
+"Plugin 'nightsense/vim-crunchbang'
 
 " All of your Plugins must be added before the following line
 call vundle#end()		" required
 filetype plugin indent on	" required
+
+" Visual settings - colors, syntax highlight
+colorscheme nemo-dark
+let g:nemo_dark_LineNr = 'off'
+"colorscheme crunchbang
+"set t_Co=16
+syntax on
+
+" IncSearch settings
+set incsearch
+set hlsearch
 
 " ALE options
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
@@ -70,7 +86,7 @@ set laststatus=2
 set t_Co=256
 " added the sys.path.append so that powerline import works in virtualenv 
 " the three powerline import lines do not work in virtualenv otherwise
-py3 << EOF
+py << EOF
 import os
 import sys
 venv = os.environ.get('VIRTUAL_ENV')
@@ -83,7 +99,7 @@ if venv is not None:
 EOF
 
 " python with virtualenv support
-py3 << EOF
+py << EOF
 import os
 import sys
 if 'VIRTUAL_ENV' in os.environ:
@@ -103,6 +119,17 @@ cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 " if set to 1, automagically preview files as you scroll throught the result list
 let g:ackpreview = 0
+
+" Open definitions in vertical split instead of new buffer
+" Uncomment below to change to opening definitions in new tab
+let g:jedi#use_tabs_not_buffers = 1
+"let g:jedi#use_splits_not_buffers = "right"
+
+" VimWiki settings
+"let g:vimwiki_list = [{'path':'~/Dropbox/wiki',}]
+
+" Line numbering settings
+let g:active_number = 1
 
 " Disable arrow keys 
 inoremap  <Up>     <NOP>
@@ -130,12 +157,13 @@ set splitright
 " Vertical line at column 80
 highlight ColorColumn ctermbg=8
 if exists('&colorcolumn')
-    set colorcolumn=121
+    set colorcolumn=80
 endif
 
 " Well, YCM doesn't seem to work, so we can use the built-in completion
 " Map basic completion from ^P to Tab - it's much more intuistic
-inoremap <Tab> <C-P> 
+"inoremap <Tab> <C-P> 
 
 " A place for code snippets.
 ab ipdb import ipdb; ipdb.set_trace()
+ab blank blank=True, null=True
