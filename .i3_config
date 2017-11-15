@@ -217,10 +217,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-        position top
-        status_command /home/marek/bin/bumblebee-status/bumblebee-status -m nic disk:root cpu memory battery date time pasink -p root.path=/ time.format="%H:%M:%S" date.format="%a, %b %d %Y" -t solarized-powerline
-}
-#bar {
-        #position top
-        #status_command i3status
-#}
+         position top
+         status_command /home/marek/bin/bumblebee-status/bumblebee-status -m nic disk:root cpu memory battery date time pasink -p root.path=/ time.format="%H:%M:%S" date.format="%a, %b %d %Y" -t gruvbox-powerline
+ }

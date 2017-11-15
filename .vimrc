@@ -23,7 +23,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
-Plugin 'powerline/powerline'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'w0rp/ale'
@@ -34,7 +33,7 @@ Plugin 'suan/vim-instant-markdown'
 Plugin 'vimwiki/vimwiki'
 Plugin 'nightsense/nemo'
 Plugin 'auwsmit/vim-active-numbers'
-"Plugin 'nightsense/vim-crunchbang'
+Plugin 'itchyny/lightline.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()		" required
@@ -43,8 +42,6 @@ filetype plugin indent on	" required
 " Visual settings - colors, syntax highlight
 colorscheme nemo-dark
 let g:nemo_dark_LineNr = 'off'
-"colorscheme crunchbang
-"set t_Co=16
 syntax on
 
 " IncSearch settings
@@ -78,35 +75,22 @@ let g:ctrlp_custom_ignore = {
 " is fine for Python and leaves no extra space when uncommenting)
 " let g:NERDSpaceDelims = 0
 
-" Powerline options
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 " Always show statusline
 set laststatus=2
+" Don't show default status info as it is handled by lightline
+set noshowmode
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
-" added the sys.path.append so that powerline import works in virtualenv 
-" the three powerline import lines do not work in virtualenv otherwise
-py << EOF
-import os
-import sys
-venv = os.environ.get('VIRTUAL_ENV')
-if venv is not None:
-    packeges_path = os.path.join(venv, "lib/python2.7/site-packages/")
-    sys.path.append(packeges_path)
-    from powerline.vim import setup as powerline_setup
-    powerline_setup()
-    del powerline_setup
-EOF
 
 " python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
+"py << EOF
+"import os
+"import sys
+"if 'VIRTUAL_ENV' in os.environ:
+  "project_base_dir = os.environ['VIRTUAL_ENV']
+  "activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  "execfile(activate_this, dict(__file__=activate_this))
+"EOF
 
 " If Silver Searcher is available, use it as the search engine for ack plugin
 " All the ag options can be used here, including -A2 -B2
@@ -124,9 +108,6 @@ let g:ackpreview = 0
 " Uncomment below to change to opening definitions in new tab
 let g:jedi#use_tabs_not_buffers = 1
 "let g:jedi#use_splits_not_buffers = "right"
-
-" VimWiki settings
-"let g:vimwiki_list = [{'path':'~/Dropbox/wiki',}]
 
 " Line numbering settings
 let g:active_number = 1
