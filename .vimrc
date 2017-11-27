@@ -22,7 +22,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'w0rp/ale'
@@ -32,21 +31,29 @@ Plugin 'jmcantrell/vim-virtualenv'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'vimwiki/vimwiki'
 Plugin 'nightsense/nemo'
-Plugin 'auwsmit/vim-active-numbers'
+Plugin 'junegunn/fzf.vim'
 Plugin 'itchyny/lightline.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()		" required
 filetype plugin indent on	" required
 
-" Visual settings - colors, syntax highlight
-colorscheme nemo-dark
-let g:nemo_dark_LineNr = 'off'
 syntax on
+" Visual settings - colors, syntax highlight
+"colorscheme nemo-dark
+"let g:nemo_dark_LineNr = 'on'
+
+if &term =~ '256color'
+    " Disable Background Color Erase (BCE) so that color schemes
+    " work properly when Vim is used inside tmux and GNU screen.
+    set t_ut=
+endif
 
 " IncSearch settings
 set incsearch
 set hlsearch
+" Map hiding last search highlight to ESC
+nnoremap <CR> :noh<CR><CR>
 
 " ALE options
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
@@ -62,14 +69,6 @@ let g:ale_python_flake8_executable = $VIRTUAL_ENV . '/bin/flake8'
 " Probably we can handle in the same way flake8 options within the ALE context.
 let g:ale_python_pylint_options = '-d C0111, -d C0103, -d R0901, -d R0902, -d R0903, -d R0904,'
 
-" CtrlP options
-" Ignore certain files and dirs
-" TODO: Ignore build folder also
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.git$',
-  \ 'file': '\v\.(pyc|swp|zip)$',
-  \ }
-
 " NerdCommenter options
 " Add spaces after comment delimiters (by default it's zero extra spaces which
 " is fine for Python and leaves no extra space when uncommenting)
@@ -77,20 +76,18 @@ let g:ctrlp_custom_ignore = {
 
 " Always show statusline
 set laststatus=2
-" Don't show default status info as it is handled by lightline
 set noshowmode
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
-set t_Co=256
+
 
 " python with virtualenv support
-"py << EOF
-"import os
-"import sys
-"if 'VIRTUAL_ENV' in os.environ:
-  "project_base_dir = os.environ['VIRTUAL_ENV']
-  "activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  "execfile(activate_this, dict(__file__=activate_this))
-"EOF
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
 
 " If Silver Searcher is available, use it as the search engine for ack plugin
 " All the ag options can be used here, including -A2 -B2
@@ -107,10 +104,12 @@ let g:ackpreview = 0
 " Open definitions in vertical split instead of new buffer
 " Uncomment below to change to opening definitions in new tab
 let g:jedi#use_tabs_not_buffers = 1
-"let g:jedi#use_splits_not_buffers = "right"
 
-" Line numbering settings
-let g:active_number = 1
+" FZF settings
+set rtp+=~/bin/fzf
+nnoremap <Leader>f :Files<CR>
+
+let g:lightline = {'colorscheme': 'wombat'}
 
 " Disable arrow keys 
 inoremap  <Up>     <NOP>
