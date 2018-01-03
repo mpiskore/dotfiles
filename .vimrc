@@ -24,6 +24,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vimwiki/vimwiki'
+Plugin 'fneu/breezy'
 
 " All of your Plugins must be added before the following line
 call vundle#end()		" required
@@ -31,6 +32,11 @@ filetype plugin indent on	" required
 
 
 syntax enable
+set background=dark
+"set termguicolors " if you want to run vim in a terminal
+colorscheme breezy
+let python_highlight_all=1
+
 set laststatus=2
 
 if &term =~ '256color'
@@ -44,6 +50,9 @@ set incsearch
 set hlsearch
 " Map hiding last search highlight to ESC
 nnoremap <CR> :noh<CR><CR>
+" Move center of screen to cursor when going to prev/next search result
+nnoremap n nzz
+nnoremap N Nzz
 
 " Search down into subfolders using regular, build-in Vim file search
 set path+=**

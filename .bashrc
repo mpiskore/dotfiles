@@ -2,6 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+set -o vi
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -65,9 +66,9 @@ unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
+xterm*|urxvt*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
+    color_prompt=yes;;
 *)
     ;;
 esac
@@ -120,7 +121,9 @@ source ~/bin/bash-git-prompt/gitprompt.sh
 
 export WORKON_HOME="$HOME/.virtualenvs"
 export EDITOR=vim
-source /usr/local/bin/virtualenvwrapper.sh
+source ~/.local/bin/virtualenvwrapper.sh
 
 # Don't create the *.pyc files
 export PYTHONDONTWRITEBYTECODE=1
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
