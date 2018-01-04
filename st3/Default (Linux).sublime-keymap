@@ -1,0 +1,29 @@
+[
+    // Useful as hell.
+    { "keys": ["ctrl+shift+v"], "command": "paste_from_history" },
+
+    // Sidebar operations.
+    { "keys": ["ctrl+k"], "command": "toggle_side_bar" },
+    { "keys": ["ctrl+shift+k"], "command": "reveal_in_side_bar"},
+    
+    // Make ctr+tab do the regular, predictible work, instead of randomly jumping around tabs.
+    { "keys": ["ctrl+tab"], "command": "next_view" },
+    { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+
+    // Overwrite the regular ctrl+q which resulted in closing of whole ST.
+    { "keys": ["ctrl+q"], "command": "close" },
+    { "keys": ["ctrl+shift+q"], "command": "exit" },
+
+    // Anaconda.
+    { "keys": ["ctrl+b"], "command": "anaconda_goto" },
+    { "keys": ["ctrl+m"], "command": "anaconda_doc"},
+
+    // Yet another trick from pycharm. There was no shortcut for that and it is highly useful for i.e. running tests.
+    { "keys": ["ctrl+shift+c"], "command": "copy_path" },
+
+    // Map the highly unusable ctrl+- to something that was already removed from X's keymap and is intuitive.
+    { "keys": ["ctrl+alt+left"], "command": "jump_back" },
+    { "keys": ["ctrl+alt+right"], "command": "jump_forward" },
+
+    { "keys": ["ctrl+shift+s"], "command": "diff_changes"}
+]

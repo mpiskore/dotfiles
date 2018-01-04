@@ -1,0 +1,61 @@
+{
+	"added_words":
+	[
+		"preparator",
+		"todo",
+		"logline",
+		"invoiceline",
+		"loglines",
+		"invoicelines",
+		"datetime",
+		"username",
+		"kwargs",
+		"cls",
+		"formset",
+		"queryset",
+		"len",
+		"html",
+		"iterable",
+		"chargeables",
+		"submatter",
+		"submatters"
+	],
+	"bold_folder_labels": true,
+	"caret_extra_bottom": 2,
+	"caret_extra_top": 2,
+	"caret_extra_width": 2,
+	"caret_style": "phase",
+	"color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
+	"draw_white_space": "all",
+	"ensure_newline_at_eof_on_save": true,
+	"find_selected_text": true,
+	"font_face": "Iosevka",
+	"font_size": 13,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Python",
+		"Vintage"
+	],
+	"ignored_words":
+	[
+	],
+	"indent_guide_options":
+	[
+		"draw_normal",
+		"draw_active"
+	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"rulers":
+	[
+		79
+	],
+	"show_full_path": true,
+	"spell_check": true,
+	"spelling_selector": "variable, markup.raw, source string.quoted - punctuation - meta.preprocessor.c.include, source comment - source comment.block.preprocessor, -(source, constant, keyword, storage, support, markup.underline.link, meta.tag)",
+	"theme": "Adaptive.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"wide_caret": false
+}
