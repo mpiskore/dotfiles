@@ -37,43 +37,43 @@ for_window [class="^.*"] border pixel 0
 
 
 # Assign workspaces to particular displays
-workspace 1 output eDP-1
-workspace 2 output HDMI-1
-workspace 3 output HDMI-1
-workspace 4 output HDMI-1
-workspace 5 output HDMI-1
+# workspace 1 output eDP-1
+# workspace 2 output HDMI-1
+# workspace 3 output HDMI-1
+# workspace 4 output HDMI-1
+# workspace 5 output HDMI-1
 
 # Assign programs to workspaces
 
 # Let's comment out the terminal, it's used on all the screens from time to time
 #assign [class="terminal"] → 1
-assign [class="chrome"] → 3
-assign [class="slack"] → 4
-assign [class="telegram"] → 5
-assign [class="spotify"] → 4
+# assign [class="chrome"] → 3
+# assign [class="slack"] → 4
+# assign [class="telegram"] → 5
+# assign [class="spotify"] → 4
 
 # terminal transparency
-exec_always --no-startup-id compton -d --config ~/.config/compton.conf
+exec_always --no-startup-id compton -b
 
 # wallpaper
-exec_always --no-startup-id feh --bg-scale ~/Pictures/beautiful-nature-hd-wallpaper_042322367_304.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/trevor-cole-1067315-unsplash.jpg
 
 # Change caps to esc
 exec_always --no-startup-id setxkbmap -option caps:escape
 
 # Run startup programs
-exec google-chrome
-exec gnome-terminal
-exec slack
-exec spotify
-exec telegram
+# exec google-chrome
+# exec gnome-terminal
+# exec slack
+# exec spotify
+# exec telegram
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -113,8 +113,12 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# Move workspaces between screens
+bindsym Shift+$mod+bracketright move workspace to output right
+bindsym Shift+$mod+bracketleft move workspace to output left
+
 # split in horizontal orientation
- bindsym $mod+g split h
+bindsym $mod+g split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -132,12 +136,6 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -172,15 +170,17 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +1% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -1% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
 
 # Sreen brightness controls
+# FIXME: doesn't work
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Lock screen
-bindsym Mod1+Control+l exec ~/bin/scripts/lock_screen.sh
+bindsym Mod1+Control+l exec ~/bin/dotfiles/lock_screen.sh
 
 # Media player controls 
 # If this won't work, it's probably playerctl to blame:
@@ -217,10 +217,12 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# TODO: add font-awesome to be able to use solarized-powerline (or any other powerlines)
 bar {
         position top
-        status_command /home/marek/bin/bumblebee-status/bumblebee-status -m nic disk:root cpu memory battery date time pasink -p root.path=/ time.format="%H:%M:%S" date.format="%a, %b %d %Y" -t solarized-powerline
+        status_command /home/marekpiskorek/bin/bumblebee-status/bumblebee-status -m spotify disk:root cpu memory battery weather datetime pasink -p root.path=/ datetime.format="%Y/%m/%d %H:%M:%S" -t gruvbox-powerline
 }
+# Backup one for no bumblebee-status installed
 #bar {
         #position top
         #status_command i3status

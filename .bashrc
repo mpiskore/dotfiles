@@ -58,9 +58,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\λ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\λ '
 fi
 unset color_prompt force_color_prompt
 
@@ -117,13 +117,9 @@ export PAGER=most
 export GIT_PROMPT_END='\n$ '
 source ~/bin/bash-git-prompt/gitprompt.sh
 
-# virtualenvwrapper config
-
-export WORKON_HOME="$HOME/.virtualenvs"
-export EDITOR=vim
-source ~/.local/bin/virtualenvwrapper.sh
-
 # Don't create the *.pyc files
 export PYTHONDONTWRITEBYTECODE=1
+
+export EDITOR=nvim
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
