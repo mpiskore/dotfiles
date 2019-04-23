@@ -52,14 +52,15 @@ for_window [class="^.*"] border pixel 0
 # assign [class="telegram"] → 5
 # assign [class="spotify"] → 4
 
-# terminal transparency
-exec_always --no-startup-id compton -b
-
 # wallpaper
 exec_always --no-startup-id feh --bg-scale ~/Pictures/trevor-cole-1067315-unsplash.jpg
 
 # Change caps to esc
 exec_always --no-startup-id setxkbmap -option caps:escape
+
+# set up screens
+exec_always --no-startup-id xrandr --output DP2-2 --auto --right-of eDP1
+exec_always --no-startup-id xrandr --output DP2-3 --auto --right-of DP2-2
 
 # Run startup programs
 # exec google-chrome
@@ -175,7 +176,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -1% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
 
 # Sreen brightness controls
-# FIXME: doesn't work
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 

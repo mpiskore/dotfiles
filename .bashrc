@@ -113,7 +113,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export PAGER=most
+# export PAGER=most
 export GIT_PROMPT_END='\nλ '
 source ~/bin/bash-git-prompt/gitprompt.sh
 
